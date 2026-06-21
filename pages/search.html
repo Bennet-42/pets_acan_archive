@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>搜索 - 菜瓜cp帖</title>
+<style>
+html { background:#f4f3ee; }
+body {
+  box-sizing:border-box; max-width:960px; min-height:100vh; margin:0 auto;
+  padding:28px 36px 64px; color:#1f2a2a; background:#fff;
+  font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;
+}
+* { box-sizing:border-box; }
+a { color:#00715d; text-decoration:none; }
+a:hover { text-decoration:underline; }
+.search-header { display:flex; align-items:baseline; justify-content:space-between; gap:16px; }
+h1 { margin:0; font-size:25px; line-height:1.35; }
+.back-link { flex:0 0 auto; }
+
+
+.archive-search-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 1040px;
+  margin: 12px auto 0;
+}
+.archive-search-input {
+  min-width: 0;
+  flex: 1;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #cfd8d3;
+  border-radius: 4px;
+  background: #fff;
+  color: #1f2a2a;
+  font: inherit;
+}
+.archive-search-input:focus {
+  outline: 2px solid #9bc8ba;
+  outline-offset: 1px;
+  border-color: #00715d;
+}
+.archive-search-submit {
+  flex: 0 0 auto;
+  height: 40px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 4px;
+  background: #00715d;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+.archive-search-submit:hover { background: #005a4a; }
+@media (max-width: 520px) {
+  .archive-search-submit { padding: 0 14px; }
+}
+
+
+.archive-search-form { margin:22px 0 18px; }
+.search-status { min-height:26px; margin:0 0 10px; color:#60706f; }
+.search-results { border-top:1px solid #e5e1d9; }
+.search-result { padding:18px 0 20px; border-bottom:1px solid #e5e1d9; }
+.search-result-title { display:flex; flex-wrap:wrap; gap:10px; align-items:baseline; font-weight:700; }
+.search-result-meta { color:#71807f; font-size:14px; }
+.search-result-snippet { margin:7px 0 0; color:#334343; }
+mark { padding:0 2px; background:#ffe58a; color:inherit; }
+.search-empty { padding:26px 0; color:#71807f; }
+@media (max-width:600px) {
+  body { padding:22px 18px 48px; }
+  .search-header { display:block; }
+  .back-link { display:inline-block; margin-top:8px; }
+}
+</style>
+</head>
+<body>
+<header class="search-header">
+  <h1>菜瓜cp帖 - 全文搜索</h1>
+  <a class="back-link" href="1.html">返回归档</a>
+</header>
+<form class="archive-search-form" action="search.html" method="get"><input class="archive-search-input" type="search" name="q" value="" placeholder="搜索全文、作者或时间" aria-label="搜索归档全文"><button class="archive-search-submit" type="submit">搜索</button></form>
+<p class="search-status" id="search-status">正在载入搜索索引...</p>
+<main class="search-results" id="search-results"></main>
+<script src="search-index.js"></script>
+<script>
+(function () {
+  var form = document.querySelector('.archive-search-form');
+  var input = document.querySelector('.archive-search-input');
+  var status = document.getElementById('search-status');
+  var results = document.getElementById('search-results');
+  var records = (window.ARCHIVE_SEARCH_INDEX && window.ARCHIVE_SEARCH_INDEX.records) || [];
+  var params = new URLSearchParams(window.location.search);
+  var initialQuery = params.get('q') || '';
+  input.value = initialQuery;
+
+  function normalize(value) {
+    return String(value || '').toLocaleLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
+  function escapeHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, function (ch) {
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+    });
+  }
+
+  function highlight(value, terms) {
+    var output = escapeHtml(value);
+    terms.forEach(function (term) {
+      var escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (!escaped) return;
+      output = output.replace(new RegExp(escaped, 'gi'), function (match) {
+        return '<mark>' + match + '</mark>';
+      });
+    });
+    return output;
+  }
+
+  function snippet(text, terms) {
+    var normalizedText = normalize(text);
+    var at = normalizedText.indexOf(terms[0]);
+    if (at < 0) at = 0;
+    var start = Math.max(0, at - 70);
+    var end = Math.min(text.length, start + 190);
+    return (start > 0 ? '...' : '') + text.slice(start, end) + (end < text.length ? '...' : '');
+  }
+
+  function runSearch(query) {
+    var terms = normalize(query).split(' ').filter(Boolean);
+    results.innerHTML = '';
+    if (!terms.length) {
+      status.textContent = '输入文字后可搜索全部归档页面。';
+      return;
+    }
+
+    var matches = [];
+    for (var i = 0; i < records.length; i++) {
+      var record = records[i];
+      var haystack = normalize(record[2] + ' ' + record[3] + ' ' + record[4]);
+      if (terms.every(function (term) { return haystack.indexOf(term) !== -1; })) {
+        matches.push(record);
+        if (matches.length >= 200) break;
+      }
+    }
+
+    status.textContent = matches.length
+      ? '找到 ' + matches.length + (matches.length === 200 ? '+ 条结果，已显示前 200 条。' : ' 条结果。')
+      : '没有找到匹配内容。';
+
+    if (!matches.length) {
+      results.innerHTML = '<p class="search-empty">可以尝试缩短关键词，或用空格分隔多个关键词。</p>';
+      return;
+    }
+
+    var fragment = document.createDocumentFragment();
+    matches.forEach(function (record) {
+      var page = record[0];
+      var anchor = record[1];
+      var author = record[2] || '未知作者';
+      var time = record[3] || '';
+      var text = record[4] || '';
+      var article = document.createElement('article');
+      article.className = 'search-result';
+      article.innerHTML =
+        '<div class="search-result-title">' +
+          '<a href="' + page + '.html' + (anchor ? '#' + encodeURIComponent(anchor) : '') + '">' +
+            '第 ' + page + ' 页 · ' + escapeHtml(author) +
+          '</a>' +
+          '<span class="search-result-meta">' + escapeHtml(time) + '</span>' +
+        '</div>' +
+        '<p class="search-result-snippet">' + highlight(snippet(text, terms), terms) + '</p>';
+      fragment.appendChild(article);
+    });
+    results.appendChild(fragment);
+  }
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var query = input.value.trim();
+    var next = new URL(window.location.href);
+    if (query) next.searchParams.set('q', query);
+    else next.searchParams.delete('q');
+    window.history.replaceState(null, '', next);
+    runSearch(query);
+  });
+
+  if (window.ARCHIVE_SEARCH_INDEX) {
+    status.textContent = '索引已载入，共 ' + records.length + ' 条正文记录。';
+    if (initialQuery) runSearch(initialQuery);
+  } else {
+    status.textContent = '搜索索引载入失败，请确认 search-index.js 与本页位于同一目录。';
+  }
+})();
+</script>
+</body>
+</html>
