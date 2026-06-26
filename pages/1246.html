@@ -110,6 +110,89 @@ table { max-width: 100%; border-collapse: collapse; }
   border-bottom: 1px solid #e5e1d9;
   list-style: none;
 }
+.comment-thread-root {
+  padding-bottom: 24px;
+}
+.thread-replies {
+  grid-column: 2;
+  margin: 16px 0 0;
+  border: 1px solid #e3e7df;
+  border-radius: 6px;
+  background: #fafaf7;
+}
+.thread-replies[open] {
+  padding-bottom: 4px;
+}
+.thread-replies summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 36px;
+  padding: 4px 12px;
+  color: #00715d;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+}
+.thread-replies summary::-webkit-details-marker {
+  display: none;
+}
+.thread-replies summary::after {
+  content: ">";
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  color: #fff;
+  background: #94aaa2;
+  font-size: 14px;
+  line-height: 1;
+}
+.thread-replies[open] summary::after {
+  content: "^";
+}
+.thread-reply-list {
+  margin: 0;
+  padding: 0 14px 8px;
+  list-style: none;
+}
+.thread-reply-list .comment-item {
+  grid-template-columns: 42px minmax(0, 1fr);
+  column-gap: 12px;
+  padding: 14px 0 16px;
+  border-top: 1px solid #e8ebe4;
+  border-bottom: 0;
+  background: transparent;
+}
+.thread-reply-list .comment-item:first-child {
+  border-top: 1px solid #e0e5dc;
+}
+.thread-reply-list .user-face,
+.thread-reply-list .avatar {
+  width: 42px;
+}
+.thread-reply-list .user-face img,
+.thread-reply-list .avatar img,
+.thread-reply-list img.pil {
+  width: 34px !important;
+  height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+}
+.thread-reply-list h3,
+.thread-reply-list h4 {
+  margin-bottom: 8px;
+}
+.thread-reply-list h3 .from a,
+.thread-reply-list h4 > a:first-child,
+.thread-reply-list .from a {
+  font-size: 16px;
+}
+.thread-reply-list .reply-content {
+  font-size: 16px;
+}
 .reply-doc, .topic-doc, .rich-content,
 .topic-richtext, .reply-content, .markdown {
   min-width: 0;
@@ -176,6 +259,29 @@ table { max-width: 100%; border-collapse: collapse; }
   #topic-content.topic-content, .comment-item {
     grid-template-columns: 42px minmax(0, 1fr);
     column-gap: 12px;
+  }
+  .thread-replies {
+    grid-column: 1 / -1;
+    margin-left: 54px;
+  }
+  .thread-reply-list {
+    padding: 0 10px 8px;
+  }
+  .thread-reply-list .comment-item {
+    grid-template-columns: 34px minmax(0, 1fr);
+    column-gap: 10px;
+  }
+  .thread-reply-list .user-face,
+  .thread-reply-list .avatar {
+    width: 34px;
+  }
+  .thread-reply-list .user-face img,
+  .thread-reply-list .avatar img,
+  .thread-reply-list img.pil {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
   }
   .user-face, .avatar { width: 42px; }
   .user-face img, .avatar img, img.pil {
@@ -361,7 +467,7 @@ script, noscript {
 <ul class="topic-reply" id="comments">
 <li class="clearfix comment-item reply-item" data-author-id="295561279" data-cid="6606287648" data-is_folded="False" data-target_kind="1013" id="6606287648">
 <div class="user-face">
-<img alt="修叽" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295561279-1.jpg" src="../images/img_8a5622b60ffe.jpg"/>
+<img alt="修叽" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295561279-1.jpg" src="images/img_8a5622b60ffe.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -389,7 +495,7 @@ script, noscript {
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="179678936" data-cid="6606287660" data-is_folded="False" data-target_kind="1013" id="6606287660">
 <div class="user-face">
-<img alt="DoRemi." class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179678936-1.jpg" src="../images/img_f11c39a0a07e.jpg"/>
+<img alt="DoRemi." class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179678936-1.jpg" src="images/img_f11c39a0a07e.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -415,9 +521,9 @@ DoRemi.
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="294336940" data-cid="6606287667" data-is_folded="False" data-target_kind="1013" id="6606287667">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="294336940" data-cid="6606287667" data-is_folded="False" data-target_kind="1013" id="6606287667">
 <div class="user-face">
-<img alt="少淡心" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up294336940-3.jpg" src="../images/img_f5dbda4629a3.jpg"/>
+<img alt="少淡心" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up294336940-3.jpg" src="images/img_f5dbda4629a3.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -432,11 +538,38 @@ DoRemi.
 </div>
 </div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="212461798" data-cid="6606287673" data-is_folded="False" data-target_kind="1013" id="6606287673">
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="243710076" data-cid="6606296335" data-is_folded="False" data-target_kind="1013" id="6606296335">
 <div class="user-face">
-<img alt="不当程序员" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up212461798-5.jpg" src="../images/img_d2a118a5c13c.jpg"/>
+<img alt="努力成为战斗粉" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up243710076-5.jpg" src="images/img_c1ff464a2d37.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+努力成为战斗粉
+<span class="pubtime">2026-06-21 00:49:03 湖南</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="294336940" data-ref-cid="6606287667">
+<span class="short ref-content">谁能想到我刚才去看重新五公应援公告里这个管理组不算散粉联盟才四个人我真的心疼了</span>
+<span class="all ref-content">谁能想到我刚才去看重新五公应援公告里这个管理组不算散粉联盟才四个人我真的心疼了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">少淡心</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>然而散粉联盟其实也才三个人。。。</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
+</li>
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="212461798" data-cid="6606287673" data-is_folded="False" data-target_kind="1013" id="6606287673">
+<div class="user-face">
+<img alt="不当程序员" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up212461798-5.jpg" src="images/img_d2a118a5c13c.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -460,11 +593,38 @@ DoRemi.
 </div>
 </div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="158482633" data-cid="6606287705" data-is_folded="False" data-target_kind="1013" id="6606287705">
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606291206" data-is_folded="False" data-target_kind="1013" id="6606291206">
 <div class="user-face">
-<img alt="Erin" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up158482633-1.jpg" src="../images/img_ae36d0fda729.jpg"/>
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+豆友295472573
+<span class="pubtime">2026-06-21 00:46:51 江西</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="212461798" data-ref-cid="6606287673">
+<span class="short ref-content">五公发现🌙太好玩了爽玩一波 天蝎发力了</span>
+<span class="all ref-content">五公发现🌙太好玩了爽玩一波 天蝎发力了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">不当程序员</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>楠是天蝎啊</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
+</li>
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="158482633" data-cid="6606287705" data-is_folded="False" data-target_kind="1013" id="6606287705">
+<div class="user-face">
+<img alt="Erin" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up158482633-1.jpg" src="images/img_ae36d0fda729.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -489,11 +649,38 @@ Erin
 </div>
 </div>
 
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="212195845" data-cid="6606293292" data-is_folded="False" data-target_kind="1013" id="6606293292">
+<div class="user-face">
+<img alt="momoo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up212195845-2.jpg" src="images/img_9ff257d9c061.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+momoo
+<span class="pubtime">2026-06-21 00:47:45 安徽</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="158482633" data-ref-cid="6606287705">
+<span class="short ref-content">支持濛主夺冠 肃清黑粉 人气国民度无争议</span>
+<span class="all ref-content">支持濛主夺冠 肃清黑粉 人气国民度无争议</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">Erin</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>我是同意的 整个节目看下来 只有濛主不忘来时路 没被jmz击垮</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295520747" data-cid="6606287944" data-is_folded="False" data-target_kind="1013" id="6606287944">
 <div class="user-face">
-<img alt="豆友295520747" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295520747-1.jpg" src="../images/img_eddc046a1797.jpg"/>
+<img alt="豆友295520747" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295520747-1.jpg" src="images/img_eddc046a1797.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -515,7 +702,7 @@ Erin
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img image-gif-container" data-render-type="video" style="width: 225px; height: 225px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/s/public/p1004902476.jpg" data-inited="true" data-render-type="gif" data-sticker-id="187516" data-type="sticker" src="../images/img_0ebee83d9a5f.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/s/public/p1004902476.jpg" data-inited="true" data-render-type="gif" data-sticker-id="187516" data-type="sticker" src="images/img_0ebee83d9a5f.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
 <div class="image-gif-pannel"><a class="image-gif-play" title="播放">GIF</a></div><video class="image-gif-player" loop="" playsinline="true" poster="https://img9.doubanio.com/view/richtext/s/public/p1004902476.jpg" preload="auto" style="display: none;" type="video/mp4" webkit-playsinline="true"></video></div>
 </div>
 </div>
@@ -529,7 +716,7 @@ Erin
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="173852464" data-cid="6606287991" data-is_folded="False" data-target_kind="1013" id="6606287991">
 <div class="user-face">
-<img alt="Ooooi" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up173852464-12.jpg" src="../images/img_248093a2930f.jpg"/>
+<img alt="Ooooi" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up173852464-12.jpg" src="images/img_248093a2930f.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -548,7 +735,7 @@ Ooooi
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="176089568" data-cid="6606288004" data-is_folded="False" data-target_kind="1013" id="6606288004">
 <div class="user-face">
-<img alt="恶魔退散" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up176089568-3.jpg" src="../images/img_c333aa4202f5.jpg"/>
+<img alt="恶魔退散" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up176089568-3.jpg" src="images/img_c333aa4202f5.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -574,9 +761,9 @@ Ooooi
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="277202750" data-cid="6606288058" data-is_folded="False" data-target_kind="1013" id="6606288058">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="277202750" data-cid="6606288058" data-is_folded="False" data-target_kind="1013" id="6606288058">
 <div class="user-face">
-<img alt="豆友2401251635" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up277202750-2.jpg" src="../images/img_dc648d214826.jpg"/>
+<img alt="豆友2401251635" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up277202750-2.jpg" src="images/img_dc648d214826.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -600,11 +787,123 @@ Ooooi
 </div>
 </div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="271804183" data-cid="6606288312" data-is_folded="False" data-target_kind="1013" id="6606288312">
+<details class="thread-replies"><summary>4 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="295530855" data-cid="6606290767" data-is_folded="False" data-target_kind="1013" id="6606290767">
 <div class="user-face">
-<img alt="沉墨" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up271804183-1.jpg" src="../images/img_4fe9fc2d80b5.jpg"/>
+<img alt="神人别回我" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up295530855-4.jpg" src="images/img_a8ac1e4c46ac.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+神人别回我
+<span class="pubtime">2026-06-21 00:46:41 江苏</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
+<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
+<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">豆友2401251635</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>五香鸡真的太美好了....我一直在哭</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606291855" data-is_folded="False" data-target_kind="1013" id="6606291855">
+<div class="user-face">
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+豆友295472573
+<span class="pubtime">2026-06-21 00:47:08 江西</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
+<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
+<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">豆友2401251635</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>蛋一公发了啥了，我都不记得了</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="295033421" data-cid="6606292378" data-is_folded="False" data-target_kind="1013" id="6606292378">
+<div class="user-face">
+<img alt="shalom" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295033421-1.jpg" src="images/img_a8f62d55e10e.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+shalom
+<span class="pubtime">2026-06-21 00:47:21 天津</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
+<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
+<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">豆友2401251635</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>😭😭😭</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="289507445" data-cid="6606294793" data-is_folded="False" data-target_kind="1013" id="6606294793">
+<div class="user-face">
+<img alt="豆友XdkZlljb_Q" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up289507445-1.jpg" src="images/img_d6e9896237f1.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+豆友XdkZlljb_Q
+<span class="pubtime">2026-06-21 00:48:22 湖北</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
+<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
+<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">豆友2401251635</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>灿灿牌调和剂</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
+</li>
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="271804183" data-cid="6606288312" data-is_folded="False" data-target_kind="1013" id="6606288312">
+<div class="user-face">
+<img alt="沉墨" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up271804183-1.jpg" src="images/img_4fe9fc2d80b5.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -628,11 +927,92 @@ Ooooi
 </div>
 </div>
 
+<details class="thread-replies"><summary>3 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="164606293" data-cid="6606289678" data-is_folded="False" data-target_kind="1013" id="6606289678">
+<div class="user-face">
+<img alt="享受生活的npc" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up164606293-14.jpg" src="images/img_3be329b6057d.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+享受生活的npc
+<span class="pubtime">2026-06-21 00:46:12 江苏</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="271804183" data-ref-cid="6606288312">
+<span class="short ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
+<span class="all ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">沉墨</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>老师说了啥，tt我</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="291059212" data-cid="6606290681" data-is_folded="False" data-target_kind="1013" id="6606290681">
+<div class="user-face">
+<img alt="momo" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up291059212-5.jpg" src="images/img_4cdd98582620.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+momo
+<span class="pubtime">2026-06-21 00:46:39 黑龙江</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="271804183" data-ref-cid="6606288312">
+<span class="short ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
+<span class="all ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">沉墨</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>说啥了</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="295561279" data-cid="6606292001" data-is_folded="False" data-target_kind="1013" id="6606292001">
+<div class="user-face">
+<img alt="修叽" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295561279-1.jpg" src="images/img_8a5622b60ffe.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+修叽
+<span class="pubtime">2026-06-21 00:47:11 陕西</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="271804183" data-ref-cid="6606288312">
+<span class="short ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
+<span class="all ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">沉墨</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>哪个</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="196531162" data-cid="6606288316" data-is_folded="False" data-target_kind="1013" id="6606288316">
 <div class="user-face">
-<img alt="豆友196531162" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up196531162-2.jpg" src="../images/img_aad6a7f7d198.jpg"/>
+<img alt="豆友196531162" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up196531162-2.jpg" src="images/img_aad6a7f7d198.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -660,7 +1040,7 @@ Ooooi
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295562730" data-cid="6606288342" data-is_folded="False" data-target_kind="1013" id="6606288342">
 <div class="user-face">
-<img alt="612追菜瓜事变" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295562730-1.jpg" src="../images/img_152d2648e61b.jpg"/>
+<img alt="612追菜瓜事变" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295562730-1.jpg" src="images/img_152d2648e61b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -675,7 +1055,7 @@ Ooooi
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 40px; height: 80px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112501196.jpg" data-sticker-id="" data-type="normal" src="../images/img_b4344f7b8e3b.jpg" style="margin-top: -66.57193605683837px; margin-left: 0.0px; width: 40px; height: 213.14387211367674px;"/>
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112501196.jpg" data-sticker-id="" data-type="normal" src="images/img_b4344f7b8e3b.jpg" style="margin-top: -66.57193605683837px; margin-left: 0.0px; width: 40px; height: 213.14387211367674px;"/>
 </div>
 </div>
 </div>
@@ -697,7 +1077,7 @@ Ooooi
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="126603453" data-cid="6606288495" data-is_folded="False" data-target_kind="1013" id="6606288495">
 <div class="user-face">
-<img alt="热风" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up126603453-234.jpg" src="../images/img_c13e1a84d022.jpg"/>
+<img alt="热风" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up126603453-234.jpg" src="images/img_c13e1a84d022.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -732,9 +1112,9 @@ Ooooi
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="280878392" data-cid="6606288564" data-is_folded="False" data-target_kind="1013" id="6606288564">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="280878392" data-cid="6606288564" data-is_folded="False" data-target_kind="1013" id="6606288564">
 <div class="user-face">
-<img alt="绝顶马赛克-" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up280878392-2.jpg" src="../images/img_fdb1591041a5.jpg"/>
+<img alt="绝顶马赛克-" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up280878392-2.jpg" src="images/img_fdb1591041a5.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -758,11 +1138,65 @@ Ooooi
 </div>
 </div>
 
+<details class="thread-replies"><summary>2 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="181138595" data-cid="6606292956" data-is_folded="False" data-target_kind="1013" id="6606292956">
+<div class="user-face">
+<img alt="宋鸭宗可达鸭" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up181138595-2.jpg" src="images/img_d3ee5e40a361.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+宋鸭宗可达鸭
+<span class="pubtime">2026-06-21 00:47:36 广东</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="280878392" data-ref-cid="6606288564">
+<span class="short ref-content">冲🌋的恋爱脑，真不好说</span>
+<span class="all ref-content">冲🌋的恋爱脑，真不好说</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">绝顶马赛克-</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>别，那我真会脱粉，千万别</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="199798934" data-cid="6606294376" data-is_folded="False" data-target_kind="1013" id="6606294376">
+<div class="user-face">
+<img alt="sunburst" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up199798934-2.jpg" src="images/img_480120ca136b.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+sunburst
+<span class="pubtime">2026-06-21 00:48:11 四川</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="181138595" data-ref-cid="6606292956">
+<span class="short ref-content">别，那我真会脱粉，千万别</span>
+<span class="all ref-content">别，那我真会脱粉，千万别</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">宋鸭宗可达鸭</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>或许是选歌不选人 然后孽缘…</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295561279" data-cid="6606288581" data-is_folded="False" data-target_kind="1013" id="6606288581">
 <div class="user-face">
-<img alt="修叽" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295561279-1.jpg" src="../images/img_8a5622b60ffe.jpg"/>
+<img alt="修叽" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295561279-1.jpg" src="images/img_8a5622b60ffe.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -781,7 +1215,7 @@ Ooooi
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="3056085" data-cid="6606288623" data-is_folded="False" data-target_kind="1013" id="6606288623">
 <div class="user-face">
-<img alt="YYY" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up3056085-6.jpg" src="../images/img_cb1b5fc37672.jpg"/>
+<img alt="YYY" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up3056085-6.jpg" src="images/img_cb1b5fc37672.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -813,7 +1247,7 @@ YYY (give me another reason)
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295534619" data-cid="6606288828" data-is_folded="False" data-target_kind="1013" id="6606288828">
 <div class="user-face">
-<img alt="蜜桃雪你" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295534619-2.jpg" src="../images/img_dc62c7c937ce.jpg"/>
+<img alt="蜜桃雪你" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295534619-2.jpg" src="images/img_dc62c7c937ce.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -828,7 +1262,7 @@ YYY (give me another reason)
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 80px; height: 40px;">
-<img alt="" data-archived-original-url="https://img2.doubanio.com/view/richtext/large/public/p1112491061.jpg" data-sticker-id="" data-type="normal" src="../images/img_c1335ac4ed5c.jpg" style="margin-top: 0.0px; margin-left: -45.1063829787234px; width: 170.2127659574468px; height: 40px;"/>
+<img alt="" data-archived-original-url="https://img2.doubanio.com/view/richtext/large/public/p1112491061.jpg" data-sticker-id="" data-type="normal" src="images/img_c1335ac4ed5c.jpg" style="margin-top: 0.0px; margin-left: -45.1063829787234px; width: 170.2127659574468px; height: 40px;"/>
 </div>
 </div>
 </div>
@@ -850,7 +1284,7 @@ YYY (give me another reason)
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="172763913" data-cid="6606288923" data-is_folded="False" data-target_kind="1013" id="6606288923">
 <div class="user-face">
-<img alt="code" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up172763913-5.jpg" src="../images/img_ae4c3781a751.jpg"/>
+<img alt="code" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up172763913-5.jpg" src="images/img_ae4c3781a751.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -879,7 +1313,7 @@ code
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295576674" data-cid="6606289008" data-is_folded="False" data-target_kind="1013" id="6606289008">
 <div class="user-face">
-<img alt="f" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295576674-2.jpg" src="../images/img_9f4e0ed4a4b0.jpg"/>
+<img alt="f" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295576674-2.jpg" src="images/img_9f4e0ed4a4b0.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -908,7 +1342,7 @@ f
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="198503976" data-cid="6606289072" data-is_folded="False" data-target_kind="1013" id="6606289072">
 <div class="user-face">
-<img alt="孙周延" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up198503976-4.jpg" src="../images/img_7b4826f33222.jpg"/>
+<img alt="孙周延" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up198503976-4.jpg" src="images/img_7b4826f33222.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -927,7 +1361,7 @@ f
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="204912592" data-cid="6606289107" data-is_folded="False" data-target_kind="1013" id="6606289107">
 <div class="user-face">
-<img alt="火柴厂" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up204912592-2.jpg" src="../images/img_b55c6656bf34.jpg"/>
+<img alt="火柴厂" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up204912592-2.jpg" src="images/img_b55c6656bf34.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -955,7 +1389,7 @@ f
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="231646340" data-cid="6606289186" data-is_folded="False" data-target_kind="1013" id="6606289186">
 <div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up231646340-3.jpg" src="../images/img_3f8a280721f8.jpg"/>
+<img alt="momo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up231646340-3.jpg" src="images/img_3f8a280721f8.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -983,7 +1417,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="285922618" data-cid="6606289217" data-is_folded="False" data-target_kind="1013" id="6606289217">
 <div class="user-face">
-<img alt="山与" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up285922618-2.jpg" src="../images/img_0b14deba751b.jpg"/>
+<img alt="山与" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up285922618-2.jpg" src="images/img_0b14deba751b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1012,7 +1446,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="192879384" data-cid="6606289350" data-is_folded="False" data-target_kind="1013" id="6606289350">
 <div class="user-face">
-<img alt="生陌" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up192879384-1.jpg" src="../images/img_7803e6ca8452.jpg"/>
+<img alt="生陌" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up192879384-1.jpg" src="images/img_7803e6ca8452.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1041,7 +1475,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="262857293" data-cid="6606289385" data-is_folded="False" data-target_kind="1013" id="6606289385">
 <div class="user-face">
-<img alt="小泥" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up262857293-2.jpg" src="../images/img_254dcfd32864.jpg"/>
+<img alt="小泥" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up262857293-2.jpg" src="images/img_254dcfd32864.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1060,7 +1494,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295604102" data-cid="6606289476" data-is_folded="False" data-target_kind="1013" id="6606289476">
 <div class="user-face">
-<img alt="momo🥯" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295604102-3.jpg" src="../images/img_f860a464756b.jpg"/>
+<img alt="momo🥯" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295604102-3.jpg" src="images/img_f860a464756b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1088,7 +1522,7 @@ momo🥯
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="281492438" data-cid="6606289587" data-is_folded="False" data-target_kind="1013" id="6606289587">
 <div class="user-face">
-<img alt="豆友2g_5z-jDb8" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up281492438-1.jpg" src="../images/img_02033537245e.jpg"/>
+<img alt="豆友2g_5z-jDb8" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up281492438-1.jpg" src="images/img_02033537245e.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1117,37 +1551,10 @@ momo🥯
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="164606293" data-cid="6606289678" data-is_folded="False" data-target_kind="1013" id="6606289678">
-<div class="user-face">
-<img alt="享受生活的npc" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up164606293-14.jpg" src="../images/img_3be329b6057d.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-享受生活的npc
-<span class="pubtime">2026-06-21 00:46:12 江苏</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="271804183" data-ref-cid="6606288312">
-<span class="short ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
-<span class="all ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">沉墨</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>老师说了啥，tt我</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="228625344" data-cid="6606289754" data-is_folded="False" data-target_kind="1013" id="6606289754">
 <div class="user-face">
-<img alt="Neeeee" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up228625344-1.jpg" src="../images/img_abd1b980cccd.jpg"/>
+<img alt="Neeeee" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up228625344-1.jpg" src="images/img_abd1b980cccd.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1168,7 +1575,7 @@ Neeeee
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 225px; height: 217.5262237762238px;">
-<img alt="" data-archived-original-url="https://img3.doubanio.com/view/richtext/large/public/p1079565747.jpg" data-sticker-id="498503" data-type="sticker" src="../images/img_dc2a8d8bcb7d.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 217.5262237762238px;"/>
+<img alt="" data-archived-original-url="https://img3.doubanio.com/view/richtext/large/public/p1079565747.jpg" data-sticker-id="498503" data-type="sticker" src="images/img_dc2a8d8bcb7d.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 217.5262237762238px;"/>
 </div>
 </div>
 </div>
@@ -1182,7 +1589,7 @@ Neeeee
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295562730" data-cid="6606289849" data-is_folded="False" data-target_kind="1013" id="6606289849">
 <div class="user-face">
-<img alt="612追菜瓜事变" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295562730-1.jpg" src="../images/img_152d2648e61b.jpg"/>
+<img alt="612追菜瓜事变" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295562730-1.jpg" src="images/img_152d2648e61b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1210,7 +1617,7 @@ Neeeee
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="252290368" data-cid="6606289868" data-is_folded="False" data-target_kind="1013" id="6606289868">
 <div class="user-face">
-<img alt="2022" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up252290368-1.jpg" src="../images/img_56df3bbba9e2.jpg"/>
+<img alt="2022" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up252290368-1.jpg" src="images/img_56df3bbba9e2.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1236,9 +1643,9 @@ Neeeee
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="192447980" data-cid="6606289911" data-is_folded="False" data-target_kind="1013" id="6606289911">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="192447980" data-cid="6606289911" data-is_folded="False" data-target_kind="1013" id="6606289911">
 <div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up192447980-10.jpg" src="../images/img_ff0db4e2cb69.jpg"/>
+<img alt="momo" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up192447980-10.jpg" src="images/img_ff0db4e2cb69.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1264,11 +1671,54 @@ momo
                   </div>
 </div>
 
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="295495068" data-cid="6606295589" data-is_folded="False" data-target_kind="1013" id="6606295589">
+<div class="user-face">
+<img alt="Yani" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295495068-2.jpg" src="images/img_e2319ed8b3c7.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+Yani
+<span class="pubtime">2026-06-21 00:48:43 广东</span>
+</h4>
+</div>
+<div class="reply-quote" style="width: auto;color: #191919;">
+<div class="reply-quote-content" data-author-id="192447980" data-ref-cid="6606289911" style="display: none;">
+<span class="short ref-content">最艺术的是前几天tops还在各种平台向CP粉乞讨买杂志，买完立马甩开；tops还和小老1️⃣家联</span>
+<span class="all ref-content">最艺术的是前几天tops还在各种平台向CP粉乞讨买杂志，买完立马甩开；tops还和小老1️⃣家联姻，把🥬入赘给她了，这叫做不愿意捆绑CP？还有之前的慈彩宝莲，这些都叫不愿意捆绑CP？甚至tops是领磕人，她们所做的一切就只是在针对🍉，从二公到现在对🍉恶意不断，真的不懂到底多大仇能恨成这样</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">momo</span>
+</div>
+<div class="quote-hidden">
+                            [该回复已被折叠]
+                            <span class="pubdate">momo</span>
+<span class="open-quote">展开</span>
+</div>
+<div class="quote-folded-reason folded-reason" style="display: none;">
+                                [内容疑似不友善或违规，被管理机器人自动折叠]
+                        </div>
+</div>
+<div class="comment-photos" style="">
+<div class="cmt-img-wrapper">
+<div class="cmt-img" style="width: 225px; height: 225px;">
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1087581679.jpg" data-sticker-id="532675" data-type="sticker" src="images/img_a8bc0cc4a497.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
+</div>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>🆙而且禁止二创这确实是内娱第一人</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="259055643" data-cid="6606289945" data-is_folded="False" data-target_kind="1013" id="6606289945">
 <div class="user-face">
-<img alt="豆友G8g6ALI6So" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up259055643-2.jpg" src="../images/img_fbd3031ccd49.jpg"/>
+<img alt="豆友G8g6ALI6So" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up259055643-2.jpg" src="images/img_fbd3031ccd49.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1298,7 +1748,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="263326333" data-cid="6606290160" data-is_folded="False" data-target_kind="1013" id="6606290160">
 <div class="user-face">
-<img alt="云下日暮里" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up263326333-3.jpg" src="../images/img_d247b6f07827.jpg"/>
+<img alt="云下日暮里" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up263326333-3.jpg" src="images/img_d247b6f07827.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1324,9 +1774,9 @@ momo
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="212564610" data-cid="6606290197" data-is_folded="False" data-target_kind="1013" id="6606290197">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="212564610" data-cid="6606290197" data-is_folded="False" data-target_kind="1013" id="6606290197">
 <div class="user-face">
-<img alt="电子蝴蝶酥" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up212564610-8.jpg" src="../images/img_e33f9071e3cd.jpg"/>
+<img alt="电子蝴蝶酥" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up212564610-8.jpg" src="images/img_e33f9071e3cd.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1338,7 +1788,7 @@ momo
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 125px; height: 225px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112509128.jpg" data-sticker-id="" data-type="normal" src="../images/img_e51eda08747e.jpg" style="margin-top: -26.354166666666657px; margin-left: 0.0px; width: 125px; height: 277.7083333333333px;"/>
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112509128.jpg" data-sticker-id="" data-type="normal" src="images/img_e51eda08747e.jpg" style="margin-top: -26.354166666666657px; margin-left: 0.0px; width: 125px; height: 277.7083333333333px;"/>
 </div>
 </div>
 </div>
@@ -1348,11 +1798,75 @@ momo
 </div>
 </div>
 
+<details class="thread-replies"><summary>2 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="212187019" data-cid="6606291494" data-is_folded="False" data-target_kind="1013" id="6606291494">
+<div class="user-face">
+<img alt="蜂王在逃lsp" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up212187019-4.jpg" src="images/img_635d14ee56da.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+蜂王在逃lsp
+<span class="pubtime">2026-06-21 00:46:59 广东</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="212564610" data-ref-cid="6606290197">
+<div class="quote-img">
+<div class="comment-photos" style="">
+<div class="cmt-img-wrapper">
+<div class="cmt-img" style="width: 40px; height: 80px;">
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112509128.jpg" data-sticker-id="" data-type="normal" src="images/img_e51eda08747e.jpg" style="margin-top: -4.433333333333337px; margin-left: 0.0px; width: 40px; height: 88.86666666666667px;"/>
+</div>
+</div>
+</div>
+</div>
+<span class="short ref-content">翻不到原楼了但是我想说不可能是这样 如果这样的话应该是除了官方应援其他全🈲 包括wf自己做的</span>
+<span class="all ref-content">翻不到原楼了但是我想说不可能是这样 如果这样的话应该是除了官方应援其他全🈲 包括wf自己做的周边 我之前追过这样的 粉丝该做还是做公司根本管不过来也不会管</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">电子蝴蝶酥</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>我天 心碎</p>
+</div>
+</div>
+
+</div>
+</li><li class="clearfix comment-item reply-item" data-author-id="180787710" data-cid="6606293236" data-is_folded="False" data-target_kind="1013" id="6606293236">
+<div class="user-face">
+<img alt="啊啊" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up180787710-6.jpg" src="images/img_3d84c5aac64e.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+啊啊
+<span class="pubtime">2026-06-21 00:47:43 重庆</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="212187019" data-ref-cid="6606291494">
+<span class="short ref-content">我天 心碎</span>
+<span class="all ref-content">我天 心碎</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">蜂王在逃lsp</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>没嗑过这么不体面的</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="287407675" data-cid="6606290251" data-is_folded="False" data-target_kind="1013" id="6606290251">
 <div class="user-face">
-<img alt="哦哦哦" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up287407675-6.jpg" src="../images/img_f270507288bc.jpg"/>
+<img alt="哦哦哦" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up287407675-6.jpg" src="images/img_f270507288bc.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1371,7 +1885,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606290334" data-is_folded="False" data-target_kind="1013" id="6606290334">
 <div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1399,7 +1913,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="216167396" data-cid="6606290574" data-is_folded="False" data-target_kind="1013" id="6606290574">
 <div class="user-face">
-<img alt="noissap" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up216167396-4.jpg" src="../images/img_edce078267c7.jpg"/>
+<img alt="noissap" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up216167396-4.jpg" src="images/img_edce078267c7.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1427,9 +1941,9 @@ noissap
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="45632115" data-cid="6606290580" data-is_folded="False" data-target_kind="1013" id="6606290580">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="45632115" data-cid="6606290580" data-is_folded="False" data-target_kind="1013" id="6606290580">
 <div class="user-face">
-<img alt="一粒橙" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up45632115-14.jpg" src="../images/img_a3ae1faf7d6d.jpg"/>
+<img alt="一粒橙" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up45632115-14.jpg" src="images/img_a3ae1faf7d6d.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1450,7 +1964,7 @@ noissap
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 125px; height: 225px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112509194.jpg" data-sticker-id="" data-type="normal" src="../images/img_f6390c72680d.jpg" style="margin-top: -56.145833333333314px; margin-left: 0.0px; width: 125px; height: 337.29166666666663px;"/>
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112509194.jpg" data-sticker-id="" data-type="normal" src="images/img_f6390c72680d.jpg" style="margin-top: -56.145833333333314px; margin-left: 0.0px; width: 125px; height: 337.29166666666663px;"/>
 </div>
 </div>
 </div>
@@ -1460,11 +1974,47 @@ noissap
 </div>
 </div>
 
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="154886583" data-cid="6606295263" data-is_folded="False" data-target_kind="1013" id="6606295263">
+<div class="user-face">
+<img alt="Alexa不是大叔" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up154886583-1.jpg" src="images/img_d2b705cf28d6.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+Alexa不是大叔
+<span class="pubtime">2026-06-21 00:48:34 上海</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="45632115" data-ref-cid="6606290580">
+<div class="quote-img">
+<div class="comment-photos" style="">
+<div class="cmt-img-wrapper">
+<div class="cmt-img" style="width: 40px; height: 80px;">
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112509194.jpg" data-sticker-id="" data-type="normal" src="images/img_f6390c72680d.jpg" style="margin-top: -13.966666666666669px; margin-left: 0.0px; width: 40px; height: 107.93333333333334px;"/>
+</div>
+</div>
+</div>
+</div>
+<span class="short ref-content">对比陈昊宇正常操作</span>
+<span class="all ref-content">对比陈昊宇正常操作</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">一粒橙</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>👍清醒有担当</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="179678936" data-cid="6606290608" data-is_folded="False" data-target_kind="1013" id="6606290608">
 <div class="user-face">
-<img alt="DoRemi." class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179678936-1.jpg" src="../images/img_f11c39a0a07e.jpg"/>
+<img alt="DoRemi." class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179678936-1.jpg" src="images/img_f11c39a0a07e.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1490,66 +2040,11 @@ DoRemi.
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="291059212" data-cid="6606290681" data-is_folded="False" data-target_kind="1013" id="6606290681">
-<div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up291059212-5.jpg" src="../images/img_4cdd98582620.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-momo
-<span class="pubtime">2026-06-21 00:46:39 黑龙江</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="271804183" data-ref-cid="6606288312">
-<span class="short ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
-<span class="all ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">沉墨</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>说啥了</p>
-</div>
-</div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295530855" data-cid="6606290767" data-is_folded="False" data-target_kind="1013" id="6606290767">
-<div class="user-face">
-<img alt="神人别回我" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up295530855-4.jpg" src="../images/img_a8ac1e4c46ac.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-神人别回我
-<span class="pubtime">2026-06-21 00:46:41 江苏</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
-<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
-<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">豆友2401251635</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>五香鸡真的太美好了....我一直在哭</p>
-</div>
-</div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="293719963" data-cid="6606290829" data-is_folded="False" data-target_kind="1013" id="6606290829">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="293719963" data-cid="6606290829" data-is_folded="False" data-target_kind="1013" id="6606290829">
 <div class="user-face">
-<img alt="。" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up293719963-2.jpg" src="../images/img_949f27282b6e.jpg"/>
+<img alt="。" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up293719963-2.jpg" src="images/img_949f27282b6e.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1573,11 +2068,38 @@ momo
 </div>
 </div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295297242" data-cid="6606291062" data-is_folded="False" data-target_kind="1013" id="6606291062">
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606293011" data-is_folded="False" data-target_kind="1013" id="6606293011">
 <div class="user-face">
-<img alt="小声一点" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up295297242-8.jpg" src="../images/img_189bd8a03397.jpg"/>
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+豆友295472573
+<span class="pubtime">2026-06-21 00:47:37 江西</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="293719963" data-ref-cid="6606290829">
+<span class="short ref-content">tt我</span>
+<span class="all ref-content">tt我</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">。</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>tt</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
+</li>
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="295297242" data-cid="6606291062" data-is_folded="False" data-target_kind="1013" id="6606291062">
+<div class="user-face">
+<img alt="小声一点" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up295297242-8.jpg" src="images/img_189bd8a03397.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1609,265 +2131,9 @@ momo
 </div>
 </div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295608799" data-cid="6606291083" data-is_folded="False" data-target_kind="1013" id="6606291083">
+<details class="thread-replies"><summary>2 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="293638572" data-cid="6606292078" data-is_folded="False" data-target_kind="1013" id="6606292078">
 <div class="user-face">
-<img alt="我不" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295608799-1.jpg" src="../images/img_57367f63517b.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-我不
-<span class="pubtime">2026-06-21 00:46:48 江苏</span>
-</h4>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>🌋去月月团或者濛主团吧 最好便利贴集合 最后决赛快乐就完了好吧</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606291206" data-is_folded="False" data-target_kind="1013" id="6606291206">
-<div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-豆友295472573
-<span class="pubtime">2026-06-21 00:46:51 江西</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="212461798" data-ref-cid="6606287673">
-<span class="short ref-content">五公发现🌙太好玩了爽玩一波 天蝎发力了</span>
-<span class="all ref-content">五公发现🌙太好玩了爽玩一波 天蝎发力了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">不当程序员</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>楠是天蝎啊</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="201578986" data-cid="6606291424" data-is_folded="False" data-target_kind="1013" id="6606291424">
-<div class="user-face">
-<img alt="怕泡泡鲁达" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up201578986-4.jpg" src="../images/img_c720fffcd1dd.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-怕泡泡鲁达
-<span class="pubtime">2026-06-21 00:46:57 重庆</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="219750901" data-ref-cid="6606260688">
-<div class="quote-img">
-<div class="comment-photos" style="">
-<div class="cmt-img-wrapper">
-<div class="cmt-img" style="width: 43.956043956043956px; height: 80px;">
-<img alt="" data-archived-original-url="https://img3.doubanio.com/view/richtext/large/public/p1112501602.jpg" data-sticker-id="" data-type="normal" src="../images/img_28c47108e2f9.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 43.956043956043956px; height: 80px;"/>
-</div>
-</div>
-</div>
-</div>
-<span class="short ref-content">Cp超话也是很体面了，主持人很难受吧</span>
-<span class="all ref-content">Cp超话也是很体面了，主持人很难受吧</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">糖炒栗子</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>我真的心疼了</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="212187019" data-cid="6606291494" data-is_folded="False" data-target_kind="1013" id="6606291494">
-<div class="user-face">
-<img alt="蜂王在逃lsp" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up212187019-4.jpg" src="../images/img_635d14ee56da.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-蜂王在逃lsp
-<span class="pubtime">2026-06-21 00:46:59 广东</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="212564610" data-ref-cid="6606290197">
-<div class="quote-img">
-<div class="comment-photos" style="">
-<div class="cmt-img-wrapper">
-<div class="cmt-img" style="width: 40px; height: 80px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112509128.jpg" data-sticker-id="" data-type="normal" src="../images/img_e51eda08747e.jpg" style="margin-top: -4.433333333333337px; margin-left: 0.0px; width: 40px; height: 88.86666666666667px;"/>
-</div>
-</div>
-</div>
-</div>
-<span class="short ref-content">翻不到原楼了但是我想说不可能是这样 如果这样的话应该是除了官方应援其他全🈲 包括wf自己做的</span>
-<span class="all ref-content">翻不到原楼了但是我想说不可能是这样 如果这样的话应该是除了官方应援其他全🈲 包括wf自己做的周边 我之前追过这样的 粉丝该做还是做公司根本管不过来也不会管</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">电子蝴蝶酥</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>我天 心碎</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="291059212" data-cid="6606291668" data-is_folded="False" data-target_kind="1013" id="6606291668">
-<div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up291059212-5.jpg" src="../images/img_4cdd98582620.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-momo
-<span class="pubtime">2026-06-21 00:47:03 黑龙江</span>
-</h4>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>我现在觉得🌋会选月</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606291855" data-is_folded="False" data-target_kind="1013" id="6606291855">
-<div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-豆友295472573
-<span class="pubtime">2026-06-21 00:47:08 江西</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
-<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
-<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">豆友2401251635</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>蛋一公发了啥了，我都不记得了</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="158510759" data-cid="6606291860" data-is_folded="False" data-target_kind="1013" id="6606291860">
-<div class="user-face">
-<img alt="Hanmorus" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up158510759-2.jpg" src="../images/img_11e9c2bacc10.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-Hanmorus
-<span class="pubtime">2026-06-21 00:47:08 北京</span>
-</h4>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>我现在真的是左右脑打架 努力不把她往不好的地方想……诡秘们谁懂啊……</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="197642205" data-cid="6606291988" data-is_folded="False" data-target_kind="1013" id="6606291988">
-<div class="user-face">
-<img alt="ななKakao" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up197642205-4.jpg" src="../images/img_af8c45b86a89.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-ななKakao
-<span class="pubtime">2026-06-21 00:47:11 四川</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="45632115" data-ref-cid="6606276270">
-<div class="quote-img">
-<div class="comment-photos" style="">
-<div class="cmt-img-wrapper">
-<div class="cmt-img" style="width: 40px; height: 80px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112505356.jpg" data-sticker-id="" data-type="normal" src="../images/img_fbaf0dbf32c6.jpg" style="margin-top: -13.966666666666669px; margin-left: 0.0px; width: 40px; height: 107.93333333333334px;"/>
-</div>
-</div>
-</div>
-</div>
-<span class="short ref-content">要粉上陈昊宇了</span>
-<span class="all ref-content">要粉上陈昊宇了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">一粒橙</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>这个谢谢大家了 真让人舒服啊</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295561279" data-cid="6606292001" data-is_folded="False" data-target_kind="1013" id="6606292001">
-<div class="user-face">
-<img alt="修叽" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295561279-1.jpg" src="../images/img_8a5622b60ffe.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-修叽
-<span class="pubtime">2026-06-21 00:47:11 陕西</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="271804183" data-ref-cid="6606288312">
-<span class="short ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
-<span class="all ref-content">你结合半夜粉圈地震之后，所有的行为统一看下来。内心就有判断了。</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">沉墨</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>哪个</p>
-</div>
-</div>
-
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="293638572" data-cid="6606292078" data-is_folded="False" data-target_kind="1013" id="6606292078">
-<div class="user-face">
-<img alt="A." class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up293638572-2.jpg" src="../images/img_8fdcfff1487a.jpg"/>
+<img alt="A." class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up293638572-2.jpg" src="images/img_8fdcfff1487a.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1892,10 +2158,174 @@ A.
 </div>
 
 </div>
+</li><li class="clearfix comment-item reply-item" data-author-id="244179237" data-cid="6606294190" data-is_folded="False" data-target_kind="1013" id="6606294190">
+<div class="user-face">
+<img alt="酒心巧克力" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up244179237-2.jpg" src="images/img_a7f601ea5bfe.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+酒心巧克力
+<span class="pubtime">2026-06-21 00:48:07 四川</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="295297242" data-ref-cid="6606291062">
+<span class="short ref-content">那说明去年闺女节目里，lyt说的是真的，怎么劝都不听</span>
+<span class="all ref-content">那说明去年闺女节目里，lyt说的是真的，怎么劝都不听</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">小声一点</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>诶诶诶还没出分组名单呢，别贷款卧蚕十年后仍然恋爱脑了</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
+<li class="clearfix comment-item reply-item" data-author-id="295608799" data-cid="6606291083" data-is_folded="False" data-target_kind="1013" id="6606291083">
+<div class="user-face">
+<img alt="我不" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295608799-1.jpg" src="images/img_57367f63517b.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+我不
+<span class="pubtime">2026-06-21 00:46:48 江苏</span>
+</h4>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>🌋去月月团或者濛主团吧 最好便利贴集合 最后决赛快乐就完了好吧</p>
+</div>
+</div>
+
+</div>
+</li>
+
+<li class="clearfix comment-item reply-item" data-author-id="201578986" data-cid="6606291424" data-is_folded="False" data-target_kind="1013" id="6606291424">
+<div class="user-face">
+<img alt="怕泡泡鲁达" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up201578986-4.jpg" src="images/img_c720fffcd1dd.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+怕泡泡鲁达
+<span class="pubtime">2026-06-21 00:46:57 重庆</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="219750901" data-ref-cid="6606260688">
+<div class="quote-img">
+<div class="comment-photos" style="">
+<div class="cmt-img-wrapper">
+<div class="cmt-img" style="width: 43.956043956043956px; height: 80px;">
+<img alt="" data-archived-original-url="https://img3.doubanio.com/view/richtext/large/public/p1112501602.jpg" data-sticker-id="" data-type="normal" src="images/img_28c47108e2f9.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 43.956043956043956px; height: 80px;"/>
+</div>
+</div>
+</div>
+</div>
+<span class="short ref-content">Cp超话也是很体面了，主持人很难受吧</span>
+<span class="all ref-content">Cp超话也是很体面了，主持人很难受吧</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">糖炒栗子</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>我真的心疼了</p>
+</div>
+</div>
+
+</div>
+</li>
+
+<li class="clearfix comment-item reply-item" data-author-id="291059212" data-cid="6606291668" data-is_folded="False" data-target_kind="1013" id="6606291668">
+<div class="user-face">
+<img alt="momo" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up291059212-5.jpg" src="images/img_4cdd98582620.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+momo
+<span class="pubtime">2026-06-21 00:47:03 黑龙江</span>
+</h4>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>我现在觉得🌋会选月</p>
+</div>
+</div>
+
+</div>
+</li>
+
+<li class="clearfix comment-item reply-item" data-author-id="158510759" data-cid="6606291860" data-is_folded="False" data-target_kind="1013" id="6606291860">
+<div class="user-face">
+<img alt="Hanmorus" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up158510759-2.jpg" src="images/img_11e9c2bacc10.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+Hanmorus
+<span class="pubtime">2026-06-21 00:47:08 北京</span>
+</h4>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>我现在真的是左右脑打架 努力不把她往不好的地方想……诡秘们谁懂啊……</p>
+</div>
+</div>
+
+</div>
+</li>
+<li class="clearfix comment-item reply-item" data-author-id="197642205" data-cid="6606291988" data-is_folded="False" data-target_kind="1013" id="6606291988">
+<div class="user-face">
+<img alt="ななKakao" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up197642205-4.jpg" src="images/img_af8c45b86a89.jpg"/>
+</div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+ななKakao
+<span class="pubtime">2026-06-21 00:47:11 四川</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="45632115" data-ref-cid="6606276270">
+<div class="quote-img">
+<div class="comment-photos" style="">
+<div class="cmt-img-wrapper">
+<div class="cmt-img" style="width: 40px; height: 80px;">
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112505356.jpg" data-sticker-id="" data-type="normal" src="images/img_fbaf0dbf32c6.jpg" style="margin-top: -13.966666666666669px; margin-left: 0.0px; width: 40px; height: 107.93333333333334px;"/>
+</div>
+</div>
+</div>
+</div>
+<span class="short ref-content">要粉上陈昊宇了</span>
+<span class="all ref-content">要粉上陈昊宇了</span>
+<a class="toggle-reply" href="javascript:void(0);">
+</a>
+<span class="pubdate">一粒橙</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>这个谢谢大家了 真让人舒服啊</p>
+</div>
+</div>
+
+</div>
+</li>
+
+
 <li class="clearfix comment-item reply-item" data-author-id="199798934" data-cid="6606292262" data-is_folded="False" data-target_kind="1013" id="6606292262">
 <div class="user-face">
-<img alt="sunburst" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up199798934-2.jpg" src="../images/img_480120ca136b.jpg"/>
+<img alt="sunburst" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up199798934-2.jpg" src="images/img_480120ca136b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1922,38 +2352,10 @@ sunburst
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="295033421" data-cid="6606292378" data-is_folded="False" data-target_kind="1013" id="6606292378">
-<div class="user-face">
-<img alt="shalom" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295033421-1.jpg" src="../images/img_a8f62d55e10e.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-shalom
-<span class="pubtime">2026-06-21 00:47:21 天津</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
-<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
-<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">豆友2401251635</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>😭😭😭</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="295536621" data-cid="6606292449" data-is_folded="False" data-target_kind="1013" id="6606292449">
 <div class="user-face">
-<img alt="豆友295536621" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295536621-1.jpg" src="../images/img_20a5d829899e.jpg"/>
+<img alt="豆友295536621" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295536621-1.jpg" src="images/img_20a5d829899e.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1982,7 +2384,7 @@ shalom
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295502201" data-cid="6606292631" data-is_folded="False" data-target_kind="1013" id="6606292631">
 <div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295502201-1.jpg" src="../images/img_07e51353fcf2.jpg"/>
+<img alt="momo" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295502201-1.jpg" src="images/img_07e51353fcf2.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -1997,7 +2399,7 @@ momo
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 78.68852459016394px; height: 80px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112456758.jpg" data-sticker-id="" data-type="normal" src="../images/img_2c492a1407a4.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 78.68852459016394px; height: 80px;"/>
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112456758.jpg" data-sticker-id="" data-type="normal" src="images/img_2c492a1407a4.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 78.68852459016394px; height: 80px;"/>
 </div>
 </div>
 </div>
@@ -2023,7 +2425,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="225191212" data-cid="6606292632" data-is_folded="False" data-target_kind="1013" id="6606292632">
 <div class="user-face">
-<img alt="云生结海盐芝士" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up225191212-1.jpg" src="../images/img_ea050139446c.jpg"/>
+<img alt="云生结海盐芝士" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up225191212-1.jpg" src="images/img_ea050139446c.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2038,7 +2440,7 @@ momo
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 40px; height: 80px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112507939.jpg" data-sticker-id="" data-type="normal" src="../images/img_c7647bb3a371.jpg" style="margin-top: -3.3333333333333286px; margin-left: 0.0px; width: 40px; height: 86.66666666666666px;"/>
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112507939.jpg" data-sticker-id="" data-type="normal" src="images/img_c7647bb3a371.jpg" style="margin-top: -3.3333333333333286px; margin-left: 0.0px; width: 40px; height: 86.66666666666666px;"/>
 </div>
 </div>
 </div>
@@ -2062,7 +2464,7 @@ momo
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img image-gif-container" data-render-type="video" style="width: 225px; height: 225px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/s/public/p1109090070.jpg" data-inited="true" data-render-type="gif" data-sticker-id="627503" data-type="sticker" src="../images/img_ae0e8256c1f0.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/s/public/p1109090070.jpg" data-inited="true" data-render-type="gif" data-sticker-id="627503" data-type="sticker" src="images/img_ae0e8256c1f0.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
 <div class="image-gif-pannel"><a class="image-gif-play" title="播放">GIF</a></div><video class="image-gif-player" loop="" playsinline="true" poster="https://img1.doubanio.com/view/richtext/s/public/p1109090070.jpg" preload="auto" style="display: none;" type="video/mp4" webkit-playsinline="true"></video></div>
 </div>
 </div>
@@ -2076,7 +2478,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="62385926" data-cid="6606292730" data-is_folded="False" data-target_kind="1013" id="6606292730">
 <div class="user-face">
-<img alt="yys" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up62385926-5.jpg" src="../images/img_e5c5f7bfd2ae.jpg"/>
+<img alt="yys" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up62385926-5.jpg" src="images/img_e5c5f7bfd2ae.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2095,7 +2497,7 @@ yys (瘦成一道月光)
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img image-gif-container" data-render-type="video" style="width: 80px; height: 80px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/s/public/p1067382355.jpg" data-inited="true" data-render-type="gif" data-sticker-id="450202" data-type="sticker" src="../images/img_c804c0b9dde7.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 80px; height: 80px;"/>
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/s/public/p1067382355.jpg" data-inited="true" data-render-type="gif" data-sticker-id="450202" data-type="sticker" src="images/img_c804c0b9dde7.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 80px; height: 80px;"/>
 <div class="image-gif-pannel"><a class="image-gif-play" title="播放">GIF</a></div><video class="image-gif-player" loop="" playsinline="true" poster="https://img9.doubanio.com/view/richtext/s/public/p1067382355.jpg" preload="auto" style="display: none;" type="video/mp4" webkit-playsinline="true"></video></div>
 </div>
 </div>
@@ -2110,7 +2512,7 @@ yys (瘦成一道月光)
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 225px; height: 189.84375px;">
-<img alt="" data-archived-original-url="https://img2.doubanio.com/view/richtext/large/public/p1072496381.jpg" data-sticker-id="470592" data-type="sticker" src="../images/img_945c5b1cf81f.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 189.84375px;"/>
+<img alt="" data-archived-original-url="https://img2.doubanio.com/view/richtext/large/public/p1072496381.jpg" data-sticker-id="470592" data-type="sticker" src="images/img_945c5b1cf81f.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 189.84375px;"/>
 </div>
 </div>
 </div>
@@ -2124,7 +2526,7 @@ yys (瘦成一道月光)
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606292853" data-is_folded="False" data-target_kind="1013" id="6606292853">
 <div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2150,65 +2552,11 @@ yys (瘦成一道月光)
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="181138595" data-cid="6606292956" data-is_folded="False" data-target_kind="1013" id="6606292956">
-<div class="user-face">
-<img alt="宋鸭宗可达鸭" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up181138595-2.jpg" src="../images/img_d3ee5e40a361.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-宋鸭宗可达鸭
-<span class="pubtime">2026-06-21 00:47:36 广东</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="280878392" data-ref-cid="6606288564">
-<span class="short ref-content">冲🌋的恋爱脑，真不好说</span>
-<span class="all ref-content">冲🌋的恋爱脑，真不好说</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">绝顶马赛克-</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>别，那我真会脱粉，千万别</p>
-</div>
-</div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606293011" data-is_folded="False" data-target_kind="1013" id="6606293011">
-<div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-豆友295472573
-<span class="pubtime">2026-06-21 00:47:37 江西</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="293719963" data-ref-cid="6606290829">
-<span class="short ref-content">tt我</span>
-<span class="all ref-content">tt我</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">。</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>tt</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="144703656" data-cid="6606293039" data-is_folded="False" data-target_kind="1013" id="6606293039">
 <div class="user-face">
-<img alt="吃个香芋派" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up144703656-10.jpg" src="../images/img_b51710305d9f.jpg"/>
+<img alt="吃个香芋派" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up144703656-10.jpg" src="images/img_b51710305d9f.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2236,7 +2584,7 @@ yys (瘦成一道月光)
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="193448732" data-cid="6606293090" data-is_folded="False" data-target_kind="1013" id="6606293090">
 <div class="user-face">
-<img alt="卤蛋🌿（考古版" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up193448732-2.jpg" src="../images/img_484ce6fd4c9b.jpg"/>
+<img alt="卤蛋🌿（考古版" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up193448732-2.jpg" src="images/img_484ce6fd4c9b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2262,65 +2610,11 @@ yys (瘦成一道月光)
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="180787710" data-cid="6606293236" data-is_folded="False" data-target_kind="1013" id="6606293236">
-<div class="user-face">
-<img alt="啊啊" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up180787710-6.jpg" src="../images/img_3d84c5aac64e.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-啊啊
-<span class="pubtime">2026-06-21 00:47:43 重庆</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="212187019" data-ref-cid="6606291494">
-<span class="short ref-content">我天 心碎</span>
-<span class="all ref-content">我天 心碎</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">蜂王在逃lsp</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>没嗑过这么不体面的</p>
-</div>
-</div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="212195845" data-cid="6606293292" data-is_folded="False" data-target_kind="1013" id="6606293292">
-<div class="user-face">
-<img alt="momoo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up212195845-2.jpg" src="../images/img_9ff257d9c061.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-momoo
-<span class="pubtime">2026-06-21 00:47:45 安徽</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="158482633" data-ref-cid="6606287705">
-<span class="short ref-content">支持濛主夺冠 肃清黑粉 人气国民度无争议</span>
-<span class="all ref-content">支持濛主夺冠 肃清黑粉 人气国民度无争议</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">Erin</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>我是同意的 整个节目看下来 只有濛主不忘来时路 没被jmz击垮</p>
-</div>
-</div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="179748473" data-cid="6606293293" data-is_folded="False" data-target_kind="1013" id="6606293293">
+<li class="clearfix comment-item reply-item comment-thread-root" data-author-id="179748473" data-cid="6606293293" data-is_folded="False" data-target_kind="1013" id="6606293293">
 <div class="user-face">
-<img alt="小企鹅子" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179748473-1.jpg" src="../images/img_b4ef9bc9e872.jpg"/>
+<img alt="小企鹅子" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179748473-1.jpg" src="images/img_b4ef9bc9e872.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2344,11 +2638,39 @@ momoo
 </div>
 </div>
 
+<details class="thread-replies"><summary>1 条回复</summary><ul class="thread-reply-list"><li class="clearfix comment-item reply-item" data-author-id="174838196" data-cid="6606296568" data-is_folded="False" data-target_kind="1013" id="6606296568">
+<div class="user-face">
+<img alt="Sigur" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up174838196-9.jpg" src="images/img_ce494b5e56b8.jpg"/>
 </div>
+<div class="reply-doc content" style="padding-left:0px;">
+<div class="bg-img-green">
+<h4>
+Sigur
+<span class="pubtime">2026-06-21 00:49:09 江西</span>
+</h4>
+</div>
+<div class="reply-quote">
+<div class="reply-quote-content" data-author-id="179748473" data-ref-cid="6606293293">
+<span class="short ref-content">之前我就说过chy真的典范……你训走了多少人就会有多少人因为这个粉上……太在乎粉丝失去主体真</span>
+<span class="all ref-content">之前我就说过chy真的典范……你训走了多少人就会有多少人因为这个粉上……太在乎粉丝失去主体真的好没有魅力……</span>
+<a class="toggle-reply" href="javascript:void(0);">
+<span class="expaned">...</span>
+</a>
+<span class="pubdate">小企鹅子</span>
+</div>
+</div>
+<div class="reply-content">
+<div class="markdown">
+<p>点了</p>
+</div>
+</div>
+
+</div>
+</li></ul></details></div>
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="175022359" data-cid="6606293404" data-is_folded="False" data-target_kind="1013" id="6606293404">
 <div class="user-face">
-<img alt="azura" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up175022359-22.jpg" src="../images/img_90e276a35761.jpg"/>
+<img alt="azura" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up175022359-22.jpg" src="images/img_90e276a35761.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2367,7 +2689,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="219665062" data-cid="6606293731" data-is_folded="False" data-target_kind="1013" id="6606293731">
 <div class="user-face">
-<img alt="猫猫的小星" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up219665062-2.jpg" src="../images/img_c199459158c6.jpg"/>
+<img alt="猫猫的小星" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up219665062-2.jpg" src="images/img_c199459158c6.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2386,7 +2708,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="284400177" data-cid="6606293756" data-is_folded="False" data-target_kind="1013" id="6606293756">
 <div class="user-face">
-<img alt="高末淑" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up284400177-9.jpg" src="../images/img_6615f2bba043.jpg"/>
+<img alt="高末淑" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up284400177-9.jpg" src="images/img_6615f2bba043.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2416,7 +2738,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="179973680" data-cid="6606293778" data-is_folded="False" data-target_kind="1013" id="6606293778">
 <div class="user-face">
-<img alt="👧" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179973680-1.jpg" src="../images/img_538a377a459b.jpg"/>
+<img alt="👧" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up179973680-1.jpg" src="images/img_538a377a459b.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2444,7 +2766,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="277202750" data-cid="6606293906" data-is_folded="False" data-target_kind="1013" id="6606293906">
 <div class="user-face">
-<img alt="豆友2401251635" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up277202750-2.jpg" src="../images/img_dc648d214826.jpg"/>
+<img alt="豆友2401251635" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up277202750-2.jpg" src="images/img_dc648d214826.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2472,7 +2794,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606293949" data-is_folded="False" data-target_kind="1013" id="6606293949">
 <div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2500,7 +2822,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="240730580" data-cid="6606294126" data-is_folded="False" data-target_kind="1013" id="6606294126">
 <div class="user-face">
-<img alt="咩阿" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up240730580-1.jpg" src="../images/img_2db3a79c44ef.jpg"/>
+<img alt="咩阿" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up240730580-1.jpg" src="images/img_2db3a79c44ef.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2526,37 +2848,10 @@ azura
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="244179237" data-cid="6606294190" data-is_folded="False" data-target_kind="1013" id="6606294190">
-<div class="user-face">
-<img alt="酒心巧克力" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up244179237-2.jpg" src="../images/img_a7f601ea5bfe.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-酒心巧克力
-<span class="pubtime">2026-06-21 00:48:07 四川</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="295297242" data-ref-cid="6606291062">
-<span class="short ref-content">那说明去年闺女节目里，lyt说的是真的，怎么劝都不听</span>
-<span class="all ref-content">那说明去年闺女节目里，lyt说的是真的，怎么劝都不听</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">小声一点</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>诶诶诶还没出分组名单呢，别贷款卧蚕十年后仍然恋爱脑了</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="287339621" data-cid="6606294291" data-is_folded="False" data-target_kind="1013" id="6606294291">
 <div class="user-face">
-<img alt="豆友09d56.1108" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up287339621-1.jpg" src="../images/img_2424348469d8.jpg"/>
+<img alt="豆友09d56.1108" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up287339621-1.jpg" src="images/img_2424348469d8.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2584,7 +2879,7 @@ azura
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="254633372" data-cid="6606294325" data-is_folded="False" data-target_kind="1013" id="6606294325">
 <div class="user-face">
-<img alt="豆友2139557822" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up254633372-1.jpg" src="../images/img_0b5721a0ca75.jpg"/>
+<img alt="豆友2139557822" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up254633372-1.jpg" src="images/img_0b5721a0ca75.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2611,37 +2906,10 @@ azura
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="199798934" data-cid="6606294376" data-is_folded="False" data-target_kind="1013" id="6606294376">
-<div class="user-face">
-<img alt="sunburst" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up199798934-2.jpg" src="../images/img_480120ca136b.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-sunburst
-<span class="pubtime">2026-06-21 00:48:11 四川</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="181138595" data-ref-cid="6606292956">
-<span class="short ref-content">别，那我真会脱粉，千万别</span>
-<span class="all ref-content">别，那我真会脱粉，千万别</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">宋鸭宗可达鸭</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>或许是选歌不选人 然后孽缘…</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="206134964" data-cid="6606294458" data-is_folded="False" data-target_kind="1013" id="6606294458">
 <div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up206134964-6.jpg" src="../images/img_b302541e0a75.jpg"/>
+<img alt="momo" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up206134964-6.jpg" src="images/img_b302541e0a75.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2669,7 +2937,7 @@ momo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="62385926" data-cid="6606294464" data-is_folded="False" data-target_kind="1013" id="6606294464">
 <div class="user-face">
-<img alt="yys" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up62385926-5.jpg" src="../images/img_e5c5f7bfd2ae.jpg"/>
+<img alt="yys" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up62385926-5.jpg" src="images/img_e5c5f7bfd2ae.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2699,38 +2967,10 @@ yys (瘦成一道月光)
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="289507445" data-cid="6606294793" data-is_folded="False" data-target_kind="1013" id="6606294793">
-<div class="user-face">
-<img alt="豆友XdkZlljb_Q" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up289507445-1.jpg" src="../images/img_d6e9896237f1.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-豆友XdkZlljb_Q
-<span class="pubtime">2026-06-21 00:48:22 湖北</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="277202750" data-ref-cid="6606288058">
-<span class="short ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了</span>
-<span class="all ref-content">🥚一公的发言含金量也在上升，今天最戳我的就是🌋因为这些人淘汰站在一旁面对xl那个方向哭了，🥚发现后抱住了她，然后五香鸡几个人发现这边情况立马都跑过来了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">豆友2401251635</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>灿灿牌调和剂</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="32575154" data-cid="6606294883" data-is_folded="False" data-target_kind="1013" id="6606294883">
 <div class="user-face">
-<img alt="Cherish" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up32575154-14.jpg" src="../images/img_f21061a73805.jpg"/>
+<img alt="Cherish" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up32575154-14.jpg" src="images/img_f21061a73805.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2762,7 +3002,7 @@ Cherish (还好，一切都可以重新开始。)
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="261562400" data-cid="6606294953" data-is_folded="False" data-target_kind="1013" id="6606294953">
 <div class="user-face">
-<img alt="豆友69sMtE7wX0" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up261562400-1.jpg" src="../images/img_707935dc18d8.jpg"/>
+<img alt="豆友69sMtE7wX0" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up261562400-1.jpg" src="images/img_707935dc18d8.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2796,7 +3036,7 @@ Cherish (还好，一切都可以重新开始。)
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="212195845" data-cid="6606294959" data-is_folded="False" data-target_kind="1013" id="6606294959">
 <div class="user-face">
-<img alt="momoo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up212195845-2.jpg" src="../images/img_9ff257d9c061.jpg"/>
+<img alt="momoo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up212195845-2.jpg" src="images/img_9ff257d9c061.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2811,7 +3051,7 @@ momoo
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img image-gif-container" data-render-type="video" style="width: 80px; height: 80px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/s/public/p1098676308.jpg" data-inited="true" data-render-type="gif" data-sticker-id="578976" data-type="sticker" src="../images/img_f9b18d501cfc.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 80px; height: 80px;"/>
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/s/public/p1098676308.jpg" data-inited="true" data-render-type="gif" data-sticker-id="578976" data-type="sticker" src="images/img_f9b18d501cfc.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 80px; height: 80px;"/>
 <div class="image-gif-pannel"><a class="image-gif-play" title="播放">GIF</a></div><video class="image-gif-player" loop="" playsinline="true" poster="https://img1.doubanio.com/view/richtext/s/public/p1098676308.jpg" preload="auto" style="display: none;" type="video/mp4" webkit-playsinline="true"></video></div>
 </div>
 </div>
@@ -2826,7 +3066,7 @@ momoo
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img image-gif-container" data-render-type="video" style="width: 225px; height: 225px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/s/public/p1103924334.jpg" data-inited="true" data-render-type="gif" data-sticker-id="604060" data-type="sticker" src="../images/img_c4d2341ee188.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/s/public/p1103924334.jpg" data-inited="true" data-render-type="gif" data-sticker-id="604060" data-type="sticker" src="images/img_c4d2341ee188.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
 <div class="image-gif-pannel"><a class="image-gif-play" title="播放">GIF</a></div><video class="image-gif-player" loop="" playsinline="true" poster="https://img9.doubanio.com/view/richtext/s/public/p1103924334.jpg" preload="auto" style="display: none;" type="video/mp4" webkit-playsinline="true"></video></div>
 </div>
 </div>
@@ -2840,7 +3080,7 @@ momoo
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="273262081" data-cid="6606295190" data-is_folded="False" data-target_kind="1013" id="6606295190">
 <div class="user-face">
-<img alt="xD" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up273262081-1.jpg" src="../images/img_6d5b6a845130.jpg"/>
+<img alt="xD" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up273262081-1.jpg" src="images/img_6d5b6a845130.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2866,46 +3106,10 @@ xD
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="154886583" data-cid="6606295263" data-is_folded="False" data-target_kind="1013" id="6606295263">
-<div class="user-face">
-<img alt="Alexa不是大叔" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up154886583-1.jpg" src="../images/img_d2b705cf28d6.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-Alexa不是大叔
-<span class="pubtime">2026-06-21 00:48:34 上海</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="45632115" data-ref-cid="6606290580">
-<div class="quote-img">
-<div class="comment-photos" style="">
-<div class="cmt-img-wrapper">
-<div class="cmt-img" style="width: 40px; height: 80px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112509194.jpg" data-sticker-id="" data-type="normal" src="../images/img_f6390c72680d.jpg" style="margin-top: -13.966666666666669px; margin-left: 0.0px; width: 40px; height: 107.93333333333334px;"/>
-</div>
-</div>
-</div>
-</div>
-<span class="short ref-content">对比陈昊宇正常操作</span>
-<span class="all ref-content">对比陈昊宇正常操作</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">一粒橙</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>👍清醒有担当</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="240730580" data-cid="6606295326" data-is_folded="False" data-target_kind="1013" id="6606295326">
 <div class="user-face">
-<img alt="咩阿" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up240730580-1.jpg" src="../images/img_2db3a79c44ef.jpg"/>
+<img alt="咩阿" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up240730580-1.jpg" src="images/img_2db3a79c44ef.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2933,7 +3137,7 @@ Alexa不是大叔
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295520747" data-cid="6606295508" data-is_folded="False" data-target_kind="1013" id="6606295508">
 <div class="user-face">
-<img alt="豆友295520747" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295520747-1.jpg" src="../images/img_eddc046a1797.jpg"/>
+<img alt="豆友295520747" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295520747-1.jpg" src="images/img_eddc046a1797.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2954,7 +3158,7 @@ Alexa不是大叔
 <div class="comment-photos" style="display: none">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 125px; height: 225px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112510560.jpg" data-sticker-id="" data-type="normal" src="../images/img_0c35e712cc4c.jpg" style="margin-top: -25.3125px; margin-left: 0.0px; width: 125px; height: 275.625px;"/>
+<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1112510560.jpg" data-sticker-id="" data-type="normal" src="images/img_0c35e712cc4c.jpg" style="margin-top: -25.3125px; margin-left: 0.0px; width: 125px; height: 275.625px;"/>
 </div>
 </div>
 </div>
@@ -2968,7 +3172,7 @@ Alexa不是大叔
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="295490900" data-cid="6606295515" data-is_folded="False" data-target_kind="1013" id="6606295515">
 <div class="user-face">
-<img alt="豆友295490900" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295490900-1.jpg" src="../images/img_4f6fb9712357.jpg"/>
+<img alt="豆友295490900" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295490900-1.jpg" src="images/img_4f6fb9712357.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -2983,7 +3187,7 @@ Alexa不是大叔
 <div class="comment-photos" style="">
 <div class="cmt-img-wrapper">
 <div class="cmt-img" style="width: 80px; height: 40px;">
-<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112504665.jpg" data-sticker-id="" data-type="normal" src="../images/img_b3abfb733cb9.jpg" style="margin-top: 0.0px; margin-left: -4.444444444444443px; width: 88.88888888888889px; height: 40px;"/>
+<img alt="" data-archived-original-url="https://img9.doubanio.com/view/richtext/large/public/p1112504665.jpg" data-sticker-id="" data-type="normal" src="images/img_b3abfb733cb9.jpg" style="margin-top: 0.0px; margin-left: -4.444444444444443px; width: 88.88888888888889px; height: 40px;"/>
 </div>
 </div>
 </div>
@@ -3005,7 +3209,7 @@ Alexa不是大叔
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="266309058" data-cid="6606295525" data-is_folded="False" data-target_kind="1013" id="6606295525">
 <div class="user-face">
-<img alt="豆友7809979627" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up266309058-2.jpg" src="../images/img_0678d0d6ada0.jpg"/>
+<img alt="豆友7809979627" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up266309058-2.jpg" src="images/img_0678d0d6ada0.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -3022,53 +3226,10 @@ Alexa不是大叔
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="295495068" data-cid="6606295589" data-is_folded="False" data-target_kind="1013" id="6606295589">
-<div class="user-face">
-<img alt="Yani" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up295495068-2.jpg" src="../images/img_e2319ed8b3c7.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-Yani
-<span class="pubtime">2026-06-21 00:48:43 广东</span>
-</h4>
-</div>
-<div class="reply-quote" style="width: auto;color: #191919;">
-<div class="reply-quote-content" data-author-id="192447980" data-ref-cid="6606289911" style="display: none;">
-<span class="short ref-content">最艺术的是前几天tops还在各种平台向CP粉乞讨买杂志，买完立马甩开；tops还和小老1️⃣家联</span>
-<span class="all ref-content">最艺术的是前几天tops还在各种平台向CP粉乞讨买杂志，买完立马甩开；tops还和小老1️⃣家联姻，把🥬入赘给她了，这叫做不愿意捆绑CP？还有之前的慈彩宝莲，这些都叫不愿意捆绑CP？甚至tops是领磕人，她们所做的一切就只是在针对🍉，从二公到现在对🍉恶意不断，真的不懂到底多大仇能恨成这样</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">momo</span>
-</div>
-<div class="quote-hidden">
-                            [该回复已被折叠]
-                            <span class="pubdate">momo</span>
-<span class="open-quote">展开</span>
-</div>
-<div class="quote-folded-reason folded-reason" style="display: none;">
-                                [内容疑似不友善或违规，被管理机器人自动折叠]
-                        </div>
-</div>
-<div class="comment-photos" style="">
-<div class="cmt-img-wrapper">
-<div class="cmt-img" style="width: 225px; height: 225px;">
-<img alt="" data-archived-original-url="https://img1.doubanio.com/view/richtext/large/public/p1087581679.jpg" data-sticker-id="532675" data-type="sticker" src="../images/img_a8bc0cc4a497.jpg" style="margin-top: 0.0px; margin-left: 0.0px; width: 225px; height: 225px;"/>
-</div>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>🆙而且禁止二创这确实是内娱第一人</p>
-</div>
-</div>
 
-</div>
-</li>
 <li class="clearfix comment-item reply-item" data-author-id="295472573" data-cid="6606295711" data-is_folded="False" data-target_kind="1013" id="6606295711">
 <div class="user-face">
-<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="../images/img_742bcf6534fb.jpg"/>
+<img alt="豆友295472573" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up295472573-1.jpg" src="images/img_742bcf6534fb.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -3096,7 +3257,7 @@ Yani
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="116508431" data-cid="6606295945" data-is_folded="False" data-target_kind="1013" id="6606295945">
 <div class="user-face">
-<img alt="十个月零三分钟" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up116508431-2.jpg" src="../images/img_4f2591bcba97.jpg"/>
+<img alt="十个月零三分钟" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up116508431-2.jpg" src="images/img_4f2591bcba97.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -3115,7 +3276,7 @@ Yani
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="205143693" data-cid="6606296115" data-is_folded="False" data-target_kind="1013" id="6606296115">
 <div class="user-face">
-<img alt="_Aotaro" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up205143693-1.jpg" src="../images/img_3217e6c6731f.jpg"/>
+<img alt="_Aotaro" class="pil" data-archived-original-url="https://img2.doubanio.com/icon/up205143693-1.jpg" src="images/img_3217e6c6731f.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -3145,7 +3306,7 @@ _Aotaro
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="285750113" data-cid="6606296160" data-is_folded="False" data-target_kind="1013" id="6606296160">
 <div class="user-face">
-<img alt="咕噜咕噜" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up285750113-5.jpg" src="../images/img_8ac012fed1ab.jpg"/>
+<img alt="咕噜咕噜" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up285750113-5.jpg" src="images/img_8ac012fed1ab.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -3173,7 +3334,7 @@ _Aotaro
 </li>
 <li class="clearfix comment-item reply-item" data-author-id="245909266" data-cid="6606296208" data-is_folded="False" data-target_kind="1013" id="6606296208">
 <div class="user-face">
-<img alt="momo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up245909266-2.jpg" src="../images/img_3859e2585580.jpg"/>
+<img alt="momo" class="pil" data-archived-original-url="https://img3.doubanio.com/icon/up245909266-2.jpg" src="images/img_3859e2585580.jpg"/>
 </div>
 <div class="reply-doc content" style="padding-left:0px;">
 <div class="bg-img-green">
@@ -3190,63 +3351,8 @@ momo
 
 </div>
 </li>
-<li class="clearfix comment-item reply-item" data-author-id="243710076" data-cid="6606296335" data-is_folded="False" data-target_kind="1013" id="6606296335">
-<div class="user-face">
-<img alt="努力成为战斗粉" class="pil" data-archived-original-url="https://img9.doubanio.com/icon/up243710076-5.jpg" src="../images/img_c1ff464a2d37.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-努力成为战斗粉
-<span class="pubtime">2026-06-21 00:49:03 湖南</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="294336940" data-ref-cid="6606287667">
-<span class="short ref-content">谁能想到我刚才去看重新五公应援公告里这个管理组不算散粉联盟才四个人我真的心疼了</span>
-<span class="all ref-content">谁能想到我刚才去看重新五公应援公告里这个管理组不算散粉联盟才四个人我真的心疼了</span>
-<a class="toggle-reply" href="javascript:void(0);">
-</a>
-<span class="pubdate">少淡心</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>然而散粉联盟其实也才三个人。。。</p>
-</div>
-</div>
 
-</div>
-</li>
-<li class="clearfix comment-item reply-item" data-author-id="174838196" data-cid="6606296568" data-is_folded="False" data-target_kind="1013" id="6606296568">
-<div class="user-face">
-<img alt="Sigur" class="pil" data-archived-original-url="https://img1.doubanio.com/icon/up174838196-9.jpg" src="../images/img_ce494b5e56b8.jpg"/>
-</div>
-<div class="reply-doc content" style="padding-left:0px;">
-<div class="bg-img-green">
-<h4>
-Sigur
-<span class="pubtime">2026-06-21 00:49:09 江西</span>
-</h4>
-</div>
-<div class="reply-quote">
-<div class="reply-quote-content" data-author-id="179748473" data-ref-cid="6606293293">
-<span class="short ref-content">之前我就说过chy真的典范……你训走了多少人就会有多少人因为这个粉上……太在乎粉丝失去主体真</span>
-<span class="all ref-content">之前我就说过chy真的典范……你训走了多少人就会有多少人因为这个粉上……太在乎粉丝失去主体真的好没有魅力……</span>
-<a class="toggle-reply" href="javascript:void(0);">
-<span class="expaned">...</span>
-</a>
-<span class="pubdate">小企鹅子</span>
-</div>
-</div>
-<div class="reply-content">
-<div class="markdown">
-<p>点了</p>
-</div>
-</div>
 
-</div>
-</li>
 </ul>
 
 
@@ -3316,9 +3422,24 @@ Sigur
     if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA')) return;
     var prev = document.querySelector('.local-paginator a[rel="prev"]');
     var next = document.querySelector('.local-paginator a[rel="next"]');
-    if (e.key === 'ArrowLeft' && prev) { e.preventDefault(); window.location.href = prev.href; }
+  if (e.key === 'ArrowLeft' && prev) { e.preventDefault(); window.location.href = prev.href; }
     if (e.key === 'ArrowRight' && next) { e.preventDefault(); window.location.href = next.href; }
   });
+})();
+
+/* Open collapsed reply threads when a hash link points inside one. */
+(function () {
+  function openHashThread() {
+    if (!window.location.hash) return;
+    var id = decodeURIComponent(window.location.hash.slice(1));
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+    var thread = target.closest && target.closest('.thread-replies');
+    if (thread) thread.open = true;
+  }
+  window.addEventListener('hashchange', openHashThread);
+  openHashThread();
 })();
 </script>
 </body></html>

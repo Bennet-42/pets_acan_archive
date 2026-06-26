@@ -91,7 +91,7 @@ mark { padding:0 2px; background:#ffe58a; color:inherit; }
   var input = document.querySelector('.archive-search-input');
   var status = document.getElementById('search-status');
   var results = document.getElementById('search-results');
-  var records = (window.ARCHIVE_SEARCH_INDEX && window.ARCHIVE_SEARCH_INDEX.records) || [];
+  var records = [];
   var params = new URLSearchParams(window.location.search);
   var initialQuery = params.get('q') || '';
   input.value = initialQuery;
@@ -141,12 +141,11 @@ mark { padding:0 2px; background:#ffe58a; color:inherit; }
       var haystack = normalize(record[2] + ' ' + record[3] + ' ' + record[4]);
       if (terms.every(function (term) { return haystack.indexOf(term) !== -1; })) {
         matches.push(record);
-        if (matches.length >= 200) break;
       }
     }
 
     status.textContent = matches.length
-      ? '找到 ' + matches.length + (matches.length === 200 ? '+ 条结果，已显示前 200 条。' : ' 条结果。')
+      ? '找到 ' + matches.length + ' 条结果。'
       : '没有找到匹配内容。';
 
     if (!matches.length) {
@@ -187,10 +186,11 @@ mark { padding:0 2px; background:#ffe58a; color:inherit; }
   });
 
   if (window.ARCHIVE_SEARCH_INDEX) {
+    records = window.ARCHIVE_SEARCH_INDEX.records || [];
     status.textContent = '索引已载入，共 ' + records.length + ' 条正文记录。';
     if (initialQuery) runSearch(initialQuery);
   } else {
-    status.textContent = '搜索索引载入失败，请确认 search-index.js 与本页位于同一目录。';
+    status.textContent = '搜索索引载入失败：未找到 search-index.js';
   }
 })();
 </script>
