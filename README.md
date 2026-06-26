@@ -4,7 +4,7 @@
 
 - **原帖**：[豆瓣小组 #490119344](https://www.douban.com/group/topic/490119344/)
 - **当前已归档**：1440 页（持续更新中）
-- **在线阅读**：https://bennet-42.github.io/pets_acan_archive/pages/1.html?v=1440
+- **在线阅读**：https://bennet-42.github.io/pets_acan_archive/pages/1.html
 
 ## 功能
 
